@@ -1,0 +1,21 @@
+To access fields from json column username
+raw query:
+SELECT JSON_EXTRACT(meta, '$.description') AS description
+FROM your_table_name;
+
+using json method
+const results = await YourModel.findAll({
+  attributes: [
+    'id',  // Example of a regular column
+    'name',  // Another regular column
+    [sequelize.json('meta.description'), 'description'],  // JSON field
+    [sequelize.json('meta.otherField'), 'otherField']  // Another JSON field if needed
+  ]
+});
+
+using literal method
+const results = await YourModel.findAll({
+  attributes: [
+    [sequelize.literal(`meta->>'$.description'`), 'description']
+  ]
+});

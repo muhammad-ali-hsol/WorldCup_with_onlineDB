@@ -1,0 +1,48 @@
+First of all specify the mysql details in dbconnect.js e.g username,password,port etc etc.
+
+Make sure your project is not running on nodemon
+
+In order to run this The Models 
+
+Follow these steps :
+
+First of all comments all these models sync 
+ComplianceModel.sync({ force: false });
+IdentityModel.sync({ force: false });
+MatchModel.sync({ force: false });
+
+Only category model is uncommented
+
+you have to make it force true and run the script 
+
+like this:
+CategoryModel.sync({ force: true });
+
+
+now you have to make category model alter true and uncomment the compliance model and make it force true
+
+
+CategoryModel.sync({ alter: true });
+ComplianceModel.sync({ force: true });
+
+now you have to make compliance model force false and uncomment the identity model sync command and make it force true
+
+CategoryModel.sync({ alter: true });
+ComplianceModel.sync({ force: false });
+IdentityModel.sync({ force: true });
+
+now at last make category model force false, IdentityModel alter true and uncomment match model and make it force true 
+
+CategoryModel.sync({ force: false });
+ComplianceModel.sync({ force: false });
+IdentityModel.sync({ alter: true });
+MatchModel.sync({ force: true });
+
+Congratulations you have made all tables now make all sync commands force false:
+
+CategoryModel.sync({ force: false });
+ComplianceModel.sync({ force: false });
+IdentityModel.sync({ force: false });
+MatchModel.sync({ force: false });
+
+After this you run your project on nodemon enjoy!!!!!

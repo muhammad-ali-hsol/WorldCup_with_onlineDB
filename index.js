@@ -1,6 +1,6 @@
 const express = require('express');
 require('dotenv').config();
-
+const {sequelize}=require('./config/dbConnect');
 const { dbConnection } = require('./config/dbConnect');
 const { CategoryModel } = require('./models/category');
 const { IdentityModel } = require('./models/identity');
@@ -34,8 +34,6 @@ app.use(express.json());
 //   catch(error){
 //     console.log(error)
 //   }
-
-
 // })(); 
 
 

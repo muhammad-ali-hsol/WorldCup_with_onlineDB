@@ -199,14 +199,14 @@ CategoryModel.sync({ force: false });
 ComplianceModel.sync({ force: false });
 IdentityModel.sync({ force: false });
 MatchModel.sync({ force: false });
-// ProductModel.sync({ force: false });
-// OrderModel.sync({ force: false });
-// OrderTrackModel.sync({ force: false });
+ProductModel.sync({ force: false });
+OrderModel.sync({ force: false });
+OrderTrackModel.sync({ force: false });
 
 
-// app.listen(_PORT, async () => {
-//   console.log(`server is listening on port : ${_PORT}`);
-//   await dbConnection();
-// })
+app.listen(_PORT, async () => {
+  console.log(`server is listening on port : ${_PORT}`);
+  await dbConnection();
+})
 
 module.exports=app;

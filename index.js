@@ -202,9 +202,9 @@ OrderModel.sync({ force: false });
 OrderTrackModel.sync({ force: false });
 
 
-app.listen(_PORT, async () => {
-  console.log(`server is listening on port : ${_PORT}`);
-  await dbConnection();
-})
+// app.listen(_PORT, async () => {
+//   console.log(`server is listening on port : ${_PORT}`);
+//   await dbConnection();
+// })
 
 module.exports=app;

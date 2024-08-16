@@ -14,7 +14,7 @@ const createMatch = async (req, res) => {
     // JOI validation
     const validationFailed = helpingFunctionMatchSchemaValidate(data);
     if (validationFailed) {
-        return res.status(400).json(validationFailed);
+        return res.status(403).json(validationFailed);
     }
 
     // I make sure this case is handled at frontend so its only as additional check
@@ -95,7 +95,7 @@ const searchMatchByTeamId = async (req, res) => {
     //Joi validation
     const teamIdValidationFail = helpingFunctionToCheckIdIsNumberandPositive('Team', teamId);
     if (teamIdValidationFail) {
-        return res.status(400).json(teamIdValidationFail);
+        return res.status(403).json(teamIdValidationFail);
     }
     try {
         const isMatchesExist = await MatchModel.findAll({
@@ -185,7 +185,7 @@ const searchMatchByMatchId = async (req, res) => {
     //Joi validation
     const matchIdValidationFail = helpingFunctionToCheckIdIsNumberandPositive('Match', matchId);
     if (matchIdValidationFail) {
-        return res.status(400).json(matchIdValidationFail);
+        return res.status(403).json(matchIdValidationFail);
     }
 
     try {
@@ -254,7 +254,7 @@ const updateMatch = async (req, res) => {
     //Joi validation
     const matchIdValidationFail = helpingFunctionToCheckIdIsNumberandPositive('Match', matchId);
     if (matchIdValidationFail) {
-        return res.status(400).json(matchIdValidationFail);
+        return res.status(403).json(matchIdValidationFail);
     }
 
     const data = req.body;
@@ -264,7 +264,7 @@ const updateMatch = async (req, res) => {
     // JOI validation
     const validationFailed = helpingFunctionMatchSchemaValidate(data);
     if (validationFailed) {
-        return res.status(400).json(validationFailed);
+        return res.status(403).json(validationFailed);
     }
 
     // I add this for additional check

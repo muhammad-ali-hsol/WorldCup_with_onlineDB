@@ -80,8 +80,42 @@ const MatchModel = sequelize.define('match', {
 }, {
     freezeTableName: true,
     timestamps: false
-}
+});
 
-)
+MatchModel.associate=(models)=>{
+
+    // Match Model Relationship with Identity Model
+    
+    MatchModel.belongsTo(models.IdentityModel, {
+        as: 'team1Detail',
+        foreignKey: 'team1', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+      MatchModel.belongsTo(models.IdentityModel, {
+        as: 'team2Detail',
+        foreignKey: 'team2', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+      MatchModel.belongsTo(models.IdentityModel, {
+        as: 'umpire1Detail',
+        foreignKey: 'umpire1', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+      MatchModel.belongsTo(models.IdentityModel, {
+        as: 'umpire2Detail',
+        foreignKey: 'umpire2', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+      MatchModel.belongsTo(models.IdentityModel, {
+        as: 'venueDetail',
+        foreignKey: 'venue', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+      MatchModel.belongsTo(models.IdentityModel, {
+        as: 'wonDetail',
+        foreignKey: 'won', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+}
 
 module.exports = { MatchModel }

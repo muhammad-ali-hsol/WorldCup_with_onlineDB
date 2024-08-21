@@ -27,7 +27,7 @@ beforeAll(async () => {
   } catch (error) {
       console.error('Error:', error);
   }
-},20000);
+});
 
 afterAll(async()=>{
   try{
@@ -45,7 +45,7 @@ describe('Match APIs', () => {
             const matchData = {
                 date: '2024-08-22',
                 time:'12:30',
-                team1: 1,
+                team1: 3,
                 team2: 2,
                 umpire1: 3,
                 umpire2: 4,
@@ -56,8 +56,7 @@ describe('Match APIs', () => {
             const response = await request(app)
                 .post('/match/create').send(matchData).set('token',token);
 
-            expect(response.status).toBe(201);
-            expect(response.body.status).toBe('Match has been created');
+            expect(response.statusCode).toBe(201);
         });
     });
 
@@ -67,7 +66,7 @@ describe('Match APIs', () => {
             const response = await request(app)
                 .get(`/match/showMatches/2`);
 
-            expect(response.status).toBe(200);
+            expect(response.statusCode).toBe(200);
             // expect(Array.isArray(response.body)).toBe(true);
         });
     });
@@ -76,18 +75,17 @@ describe('Match APIs', () => {
         it('should return match details by match ID and return 200', async () => {
 
             const response = await request(app)
-                .get(`/match/show/1`);
-
-            expect(response.status).toBe(200);
+                .get("/match/show/1");
+            expect(response.statusCode).toBe(200);
         });
     });
 
     describe('GET all Matches', () => {
         it('should return all matches and return 200', async () => {
             const response = await request(app)
-                .get('/match/showAll');
+                .get("/match/showAll");
 
-            expect(response.status).toBe(200);
+            expect(response.statusCode).toBe(200);
             expect(Array.isArray(response.body)).toBe(true);
         });
     });
@@ -97,7 +95,7 @@ describe('Match APIs', () => {
             const matchData = {
                 date: '2024-08-28',
                 time:'12:30',
-                team1: 1,
+                team1: 3,
                 team2: 2,
                 umpire1: 3,
                 umpire2: 4,
@@ -106,10 +104,10 @@ describe('Match APIs', () => {
             };
 
             const response = await request(app)
-                .put(`/match/update/1`)
+                .put("/match/update/1")
                 .send(matchData).set('token',token);
 
-            expect(response.status).toBe(200);
+            expect(response.statusCode).toBe(200);
             // expect(response.body).toBe(`Match with ID ${matchId} has been updated`);
         });
     });

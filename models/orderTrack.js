@@ -25,8 +25,16 @@ const OrderTrackModel = sequelize.define('orderTrack', {
 }, {
     freezeTableName: true,
     timestamps: false
-}
+});
 
-)
+OrderTrackModel.associate=(models)=>{
+    
+     // Order Track Model Relationship with Order Model
+    OrderTrackModel.belongsTo( OrderModel, {
+        as: 'orderDetail',
+        foreignKey: 'orderId', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+}
 
 module.exports = { OrderTrackModel }

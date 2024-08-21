@@ -24,7 +24,7 @@ const ComplianceModel = sequelize.define('compliance', {
     updatedBy: {
         type: DataTypes.STRING,
         allowNull: true
-    }, 
+    },
     categoryId: {
         type: DataTypes.INTEGER,
         references: {
@@ -37,8 +37,21 @@ const ComplianceModel = sequelize.define('compliance', {
 }, {
     freezeTableName: true,
     timestamps: false
-}
+});
 
-)
+ComplianceModel.associate = (models) => {
+
+    // Compliance Model Relationship with Category Model
+    ComplianceModel.belongsTo(models.CategoryModel, {
+        foreignKey: 'categoryId', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+    });
+    // Compliance Model Relationship with Order Model
+    ComplianceModel.hasMany(models.OrderModel, {
+        as: 'userDetail',
+        foreignKey: 'orderBy', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+}
 
 module.exports = { ComplianceModel }

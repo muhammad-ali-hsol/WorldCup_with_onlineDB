@@ -34,15 +34,31 @@ const OrderModel = sequelize.define('order', {
         type: DataTypes.STRING,
         allowNull: false
     }
-
-
-
-
 }, {
     freezeTableName: true,
     timestamps: false
-}
+});
 
-)
+OrderModel.associate=(models)=>{
+
+    // Order Model Relationship with Compliance Model
+    OrderModel.belongsTo(models.ComplianceModel, {
+        as: 'userDetail',
+        foreignKey: 'orderBy', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+      // Order Model Relationship with Product Model
+      OrderModel.belongsTo( models.ProductModel, {
+        as: 'productDetail',
+        foreignKey: 'productId', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+      // Order Model Relationship with Order Track Model
+      OrderModel.hasOne(models.OrderTrackModel, {
+        as: 'orderDetail',
+        foreignKey: 'orderId', onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+      });
+}
 
 module.exports = { OrderModel }

@@ -31,18 +31,27 @@ const orderSchema = Joi.object({
         'string.base': 'Order Description must be a string',
         'string.empty': 'Order Description cannot be empty',
     }),
-    // orderStatus: Joi.string().valid('active', 'inactive').messages({
-    //     'any.only': 'Order Status must be either active or inactive',
-    //     'string.base': 'Order Status must be a string',
-    //     'string.empty': 'Order Status cannot be empty',
-    //     'any.required': 'Order Status is required'
-    // }),
+    orderStatus: Joi.string().valid('active', 'inactive').messages({
+        'any.only': 'Order Status must be either active or inactive',
+        'string.base': 'Order Status must be a string',
+        'string.empty': 'Order Status cannot be empty',
+        'any.required': 'Order Status is required'
+    }),
     address: Joi.string().required().messages({
         'string.empty': 'Address cannot be empty',
         'any.required': 'Address is required'
     }),
 });
 
+const orderTrackSchema = Joi.object({
+    trackingStatus: Joi.string().valid('pending', 'processing','shipped','cancelled').messages({
+        'any.only': 'Order Tracking Status must be pending , Processing , shipped or cancelled',
+        'string.base': 'Order Tracking Status must be a string',
+        'string.empty': 'Order Tracking Status cannot be empty',
+        'any.required': 'Order Tracking Status is required'
+    })
+});
 
 
-module.exports={productSchema,orderSchema}
+
+module.exports={productSchema,orderSchema,orderTrackSchema}

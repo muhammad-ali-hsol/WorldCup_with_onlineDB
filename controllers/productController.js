@@ -11,7 +11,7 @@ const addProduct=async(req,res)=>{
         const errors = error.details.map(detail => ({
             message: detail.message
         }));
-        return res.status(400).json(errors);
+        return res.status(403).json(errors);
     }
     data.createdBy=process.env.PRODUCT_CREATOR;
     try{
